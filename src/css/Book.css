@@ -1,0 +1,142 @@
+html {
+    background: white;
+    font: 16px Arial;
+}
+
+input {
+    font: 16px Arial;
+}
+
+td {
+    border-top: 1px solid black;
+    cursor: cell;
+    padding: 5px;
+}
+
+th {
+    cursor: pointer;
+    padding: 5px;
+}
+
+table {
+    border: 1px solid black;
+    margin: 20px;
+}
+
+.toolbar {
+    margin-left: 20px;
+}
+
+.toolbar a, .toolbar button { /* thanks css3buttongenerator.com! */
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border-radius: 28px;
+    box-shadow: 0px 1px 3px #666666;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: 0;
+    margin-right: 5px;
+}
+
+.toolbar a:hover, .toolbar button:hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+/*.contentStyle  {*/
+/*    height: 310px;*/
+/*    color: #fff;*/
+/*    width: 100%;*/
+/*    lineHeight: 160px;*/
+/*    textAlign: center;*/
+/*    background: #364d79;*/
+/*}*/
+
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.carousel-img {
+    flex: 1;
+    height: auto;
+    /*width: auto;*/
+    width: 100%;
+    max-height: 100%;
+}
+
+.allView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*text-align: center;*/
+    /*margin-top: 50px;*/
+}
+
+.bookList {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.book {
+    flex: 1;
+}
+
+.book-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
+
+.custom-table {
+    flex: auto;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.ant-card-meta-title {
+    /*content: "TITLE";*/
+    /*font-weight: bold;*/
+    margin-bottom: -1px !important;
+    margin-top: -1px !important;
+    font-size: 1px !important;
+    white-space: normal !important;
+    text-align: left !important;
+    overflow: hidden!important;/*隐藏文本溢出*/
+    text-overflow: ellipsis!important; /*在文本末尾添加省略号*/
+}
+
+.ant-card-meta-description {
+    /*content: "PRICE";*/
+    color: red !important;
+    margin-bottom: -1px !important;
+    white-space: nowrap!important; /*防止文本换行*/
+    overflow: hidden!important; /*隐藏文本溢出*/
+    text-overflow: ellipsis!important; /*在文本末尾添加省略号*/
+}
+
+@media screen and (max-width: 768px) {
+    .ant-table {
+        font-size: 12px;
+    }
+    .ant-table-column-title {
+        display: none;
+    }
+    .ant-table-thead > tr > th:first-child {
+        display: none;
+    }
+    .ant-table-tbody > tr > td:first-child {
+        font-weight: bold;
+    }
+}

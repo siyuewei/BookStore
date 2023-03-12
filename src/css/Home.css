@@ -1,0 +1,88 @@
+#components-layout-demo-top-side-2 .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl #components-layout-demo-top-side-2 .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+}
+
+h1 {
+    font-family: serif;
+    font-size: 1.8rem;
+    color: #282c34;
+}
+
+h3 {
+    font-family: serif;
+    font-size: 1.8rem;
+}
+
+h4 {
+    color: #282c34;
+}
+
+.header {
+    color: black;
+    background-color: white;
+    /*width: 100%;*/
+    margin-left: -20px;
+    align-items: center;
+    display: flex;
+}
+
+/*.background {*/
+/*    color: white;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    min-height: 800px;*/
+/*}*/
+
+/*.header-img {*/
+/*    height: 35px;*/
+/*    width: auto;*/
+/*    margin-top: 25px;*/
+/*    margin-left: -20px;*/
+/*}*/
+
+.logo {
+    margin-right: 20px;
+}
+
+.content {
+    padding: 24px;
+    min-height: 280px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.content-layout {
+    padding: 0 24px 24px;
+}
+
+.basicContent {
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.carousel-img {
+    flex: 1;
+    height: auto;
+    /*width: auto;*/
+    width: 100%;
+    max-height: 100%;
+}

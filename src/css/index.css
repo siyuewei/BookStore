@@ -1,0 +1,71 @@
+/*header*/
+#header {
+    position: fixed;
+    z-index: 10;
+    max-width: 100%;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 8px #f0f1f2;
+    box-shadow: 0 2px 8px #f0f1f2;
+    width:100%;
+    /*margin-top: 20px;*/
+}
+
+#header-content{
+    width:1000px;
+    margin:0 auto;
+}
+
+#logo {
+    float: left;
+    height: 64px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 64px;
+    text-decoration: none;
+    vertical-align: middle;
+    border-style: none;
+}
+
+.logo-font {
+    margin-top : 0.4em;
+}
+
+/*sideBar*/
+.sider {
+    background: #ffffff;
+    overflow: hidden !important;
+    padding-left: 0 !important;
+    padding-right:0 !important;
+}
+
+.ant-layout-has-sider{
+    width:1000px;
+    margin:0 auto;
+
+}
+
+
+.ant-layout, .ant-menu-inline, .ant-menu-inline-collapsed{
+    height: 100%;
+    border-right: 0 !important;
+
+}
+
+.ant-layout .ant-layout-has-sider > .ant-layout-content {
+    overflow-x :visible !important;
+}
+
+.ant-layout-sider-children{
+    position:fixed !important;
+    width:180px;
+}
+
+.ant-layout-sider-trigger{
+    position:relative;
+    background: #ffffff !important;
+}
+
+.ant-layout-sider-trigger .anticon {
+    color:#000000 !important;
+}
+
