@@ -4,12 +4,13 @@ import React from "react";
 import "../../css/Home.css"
 
 export const InputProfile = (props) => {
-    const {placeholder,icon} = props;
+    const {placeholder, icon, style} = props;
+    const { icon: Icon, className: iconClassName } = icon;
     return(
         <Input
-            style = {{width:300,}}
+            style={{ ...style}} // 将传入的 style 解构到 Input 组件中
             placeholder={placeholder}
-            prefix={<icon className="site-form-item-icon" />}
+            prefix={Icon && <Icon className={iconClassName} />} // 只有当 Icon 存在时才渲染
             suffix={
                 <Tooltip title="Extra information">
                     <InfoCircleOutlined

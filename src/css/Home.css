@@ -26,14 +26,14 @@ h4 {
     color: #282c34;
 }
 
-.header {
-    color: black;
-    background-color: white;
-    /*width: 100%;*/
-    margin-left: -20px;
-    align-items: center;
-    display: flex;
-}
+/*.header {*/
+/*    color: black;*/
+/*    background-color: white;*/
+/*    !*width: 100%;*!*/
+/*    margin-left: -20px;*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*}*/
 
 /*.background {*/
 /*    color: white;*/
@@ -57,11 +57,11 @@ h4 {
     padding: 24px;
     min-height: 280px;
     width: 100%;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
 }
 
 .content-layout {
-    padding: 0 24px 24px;
+    padding: 35px 24px 24px;
 }
 
 .basicContent {
@@ -85,4 +85,16 @@ h4 {
     /*width: auto;*/
     width: 100%;
     max-height: 100%;
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.avatar-note{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
 }

@@ -14,20 +14,20 @@ export const OrderTable = () => {
             pagination={{pageSize: 5}}
             responsive={['sm', 'md' ,'lg' ,'xl', 'xxl']}
         >
-            <ColumnGroup title="Book">
-                <Column
-                    title="Cover"
-                    dataIndex="name"
-                    key="name"
-                    render={(_, record) => (
-                        <img
-                            src={require("../../assets/books/book1.jpg")}
-                            style={{width:25 ,height:30}}
-                        />
-                    )}
-                />
-                <Column title="Title" dataIndex="name" key="name" />
-            </ColumnGroup>
+            {/*<ColumnGroup title="Book">*/}
+            <Column
+                title="Cover"
+                dataIndex="image"
+                key="image"
+                render={(image) => (
+                    <img
+                        src={require("../../assets/books/"+image)}
+                        style={{width:25 ,height:30}}
+                    />
+                )}
+            />
+            <Column title="Title" dataIndex="title" key="title" />
+            {/*</ColumnGroup>*/}
             <Column
                 title="Amount"
                 dataIndex="amount"

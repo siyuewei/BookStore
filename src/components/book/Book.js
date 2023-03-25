@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 export function Book (props)  {
     const info = props;
-    console.log(info.image);
+    // console.log(info.image);
 
     return(
         <div>

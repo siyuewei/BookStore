@@ -12,7 +12,7 @@ export const Router = () => {
         <Routes>
             <Route path="/" element={<HomeView />}>
                 <Route path="books" element={<BooksView/>}/>
-                <Route path={"books/:id"} element={<BooksDetailView />} />
+                <Route path={"books/:id"} element={<BooksDetailView />}/>
                 <Route path="cart" element={<CartView />} />
                 <Route path="order" element={<OrderView/>}/>
                 <Route path="profile" element={<ProfileView/>}/>
