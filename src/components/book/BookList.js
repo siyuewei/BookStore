@@ -17,7 +17,7 @@ export const BookList = () => {
                     <Book
                         className = "book"
                         image={item.image}
-                        name={item.name}
+                        title={item.title}
                         price={item.price}
                         id={item.id}
                     >

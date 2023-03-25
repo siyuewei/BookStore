@@ -26,7 +26,7 @@ export function Book (props)  {
                     }
                 >
                     <Meta
-                        title={info.name}
+                        title={info.title}
                         description={'¥' + info.price}
                         // style={
                         //     {
