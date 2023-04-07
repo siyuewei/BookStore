@@ -3,7 +3,7 @@ import "../../css/Home.css"
 import { Space , Table, Tag,Button,InputNumber } from 'antd';
 import {cartData as data} from "../../data";
 
-const { Column, ColumnGroup } = Table;
+const { Column, } = Table;
 const onChange = (value) => {
     console.log('changed', value);
 };
@@ -11,7 +11,7 @@ export const CartTable = () => {
     return(
         <Table
             dataSource={data}
-            pagination={{pageSize: 5}}
+            pagination={{pageSize: 4}}
             // className="custom-table"
         >
             <Column

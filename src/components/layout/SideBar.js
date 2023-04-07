@@ -10,28 +10,28 @@ const books = () => {
     return{
         key: `subBooks`,
         icon: React.createElement(ReadOutlined),
-        label: <Link to="/books">Books</Link>,
+        label: <Link to="/home/books">Books</Link>,
     }
 }
 const cart = () => {
     return{
         key: `subCart`,
         icon: React.createElement(ShoppingCartOutlined),
-        label: <Link to="/cart">Cart</Link>,
+        label: <Link to="/home/cart">Cart</Link>,
     }
 }
 const order = () => {
     return{
         key: `subOrder`,
         icon: React.createElement(ShoppingOutlined),
-        label: <Link to="/order">My Order</Link>,
+        label: <Link to="/home/order">My Order</Link>,
     }
 }
 const profile = () => {
     return{
         key: `subProfile`,
         icon: React.createElement(SolutionOutlined),
-        label: <Link to="/profile">My Profile</Link>,
+        label: <Link to="/home/profile">My Profile</Link>,
     }
 }
 
