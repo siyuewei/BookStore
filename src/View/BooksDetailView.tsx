@@ -1,14 +1,18 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Descriptions, Button } from "antd";
+import { Descriptions, Button, Image } from "antd";
 import { ShoppingCartOutlined, MoneyCollectOutlined } from "@ant-design/icons";
-import { data as booksData } from "../data";
+import { bookData } from "../data";
 import "../css/bookDetail.css";
+import { getBookByBookId } from "../Service/BookService";
+import { addCart } from "../Service/CartService";
+import { IBook } from "../interface";
 
-export const BooksDetailView = (props) => {
+export const BooksDetailView = () => {
   const book = useParams();
-  const info = booksData.find((item) => item.id === book.id);
-  // console.log(book);
+  const info: IBook = bookData.find(
+    (item: IBook) => item.id.toString() === book.id
+  )!;
 
   return (
     <div className={"content"}>
@@ -20,26 +24,30 @@ export const BooksDetailView = (props) => {
         </Link>
       </div>
       <br></br>
-      <h1>{info.title}</h1>
+      <h1>{info.name}</h1>
       <div className={"book-detail"}>
         <div className={"book-image"}>
-          <img alt="image" src={require(`../assets/books/${info.image}`)} />
+          <Image
+            alt="image"
+            src={require(`../assets/books/${info.image}`)}
+            onClick={() => getBookByBookId(book.id)}
+          />
         </div>
         <div className="des-group">
           <Descriptions className="all-des">
-            <Descriptions.Item label={"Title"} span={3} bordered>
-              {info.title}
+            <Descriptions.Item label={"Title"} span={3}>
+              {info.name}
             </Descriptions.Item>
-            <Descriptions.Item label={"Author"} span={3} bordered>
+            <Descriptions.Item label={"Author"} span={3}>
               {info.author}
             </Descriptions.Item>
-            <Descriptions.Item label={"Class"} span={3} bordered>
-              {info.type}
-            </Descriptions.Item>
-            <Descriptions.Item label={"Price"} span={3} bordered>
+            {/*<Descriptions.Item label={"Class"} span={3} bordered>*/}
+            {/*  {info.type}*/}
+            {/*</Descriptions.Item>*/}
+            <Descriptions.Item label={"Price"} span={3}>
               {<span className={"price"}>{"¥" + info.price}</span>}
             </Descriptions.Item>
-            <Descriptions.Item label={"State"} span={3} bordered>
+            <Descriptions.Item label={"State"} span={3}>
               {info.inventory !== 0 ? (
                 <span>
                   有货{" "}
@@ -60,11 +68,16 @@ export const BooksDetailView = (props) => {
         </Descriptions>
       </div>
       <div className={"button-groups"}>
-        <Button type="danger" icon={<ShoppingCartOutlined />} size={"large"}>
+        <Button
+          danger
+          icon={<ShoppingCartOutlined />}
+          size={"large"}
+          onClick={() => addCart(book.id, 1, 1)}
+        >
           加入购物车
         </Button>
         <Button
-          type="danger"
+          danger
           icon={<MoneyCollectOutlined />}
           size={"large"}
           style={{ marginLeft: "15%" }}

@@ -16,12 +16,12 @@
     background: #fff;
     -webkit-box-shadow: 0 2px 8px #f0f1f2;
     box-shadow: 0 2px 8px #f0f1f2;
-    width:100%;
+    width: 100%;
     /*margin-top: 20px;*/
 }
 
-#header-content{
-    width:1000px;
+#header-content {
+    width: 1000px;
     margin: 20px auto 0;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .logo-font {
-    margin-top : 0.4em;
+    margin-top: 0.4em;
 }
 
 /*sideBar*/
@@ -45,38 +45,56 @@
     background: #ffffff;
     overflow: hidden !important;
     padding-left: 0 !important;
-    padding-right:0 !important;
-    margin-top : 30px;
+    padding-right: 0 !important;
+    margin-top: 30px;
 }
 
-.ant-layout-has-sider{
-    width:1000px;
-    margin:0 auto;
+.ant-layout-has-sider {
+    width: 1000px;
+    margin: 0 auto;
 
 }
 
 
-.ant-layout, .ant-menu-inline, .ant-menu-inline-collapsed{
+/*avatar*/
+#avatar {
+    display: flex;
+    align-items: center; /* 可以让Avatar和name在垂直方向上居中对齐 */
+}
+
+#avatar .name {
+    margin-left: 10px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    flex: 1;
+}
+
+#avatar Avatar {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.ant-layout, .ant-menu-inline, .ant-menu-inline-collapsed {
     height: 100%;
     border-right: 0 !important;
 
 }
 
 .ant-layout .ant-layout-has-sider > .ant-layout-content {
-    overflow-x :visible !important;
+    overflow-x: visible !important;
 }
 
-.ant-layout-sider-children{
-    position:fixed !important;
-    width:180px;
+.ant-layout-sider-children {
+    position: fixed !important;
+    width: 180px;
 }
 
-.ant-layout-sider-trigger{
-    position:relative;
+.ant-layout-sider-trigger {
+    position: relative;
     background: #ffffff !important;
 }
 
 .ant-layout-sider-trigger .anticon {
-    color:#000000 !important;
+    color: #000000 !important;
 }
 

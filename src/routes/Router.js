@@ -13,13 +13,11 @@ import { OrderView } from "../View/OrderView";
 import { ProfileView } from "../View/ProfileView";
 import { BooksDetailView } from "../View/BooksDetailView";
 import { LoginView } from "../View/LoginView";
-import { DemoView } from "../View/DemoView";
 // import {Excel} from "../View/ExcelView";
 export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/demo" element={<DemoView />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/home" element={<HomeView />}>
           <Route path="books" element={<BooksView />} />
