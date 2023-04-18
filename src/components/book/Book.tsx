@@ -5,7 +5,7 @@ import "../../css/Book.css";
 
 const { Meta } = Card;
 
-export function Book(props) {
+export function Book(props: any) {
   const info = props;
   // console.log(info.image);
 

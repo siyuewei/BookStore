@@ -4,11 +4,12 @@ import logoFont from "../../assets/logo-name.svg";
 import React from "react";
 import "../../css/index.css";
 import { UserAvatar } from "./Avatar";
-import cookie from "react-cookies";
+import { Cookies } from "react-cookie";
 
 const { Header } = Layout;
 export const HomeHeader = () => {
-  const user = cookie.load("currentUser");
+  const cookie = new Cookies();
+  const user = cookie.get("currentUser");
 
   return (
     <Header className="header">
@@ -21,15 +22,15 @@ export const HomeHeader = () => {
       {/*/!*<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />*!/*/}
       <div id="header">
         <div id="header-content">
-          <Row>
-            <Col
-              gutter={{
-                xs: 8,
-                sm: 16,
-                md: 24,
-                lg: 32,
-              }}
-            >
+          <Row
+            gutter={{
+              xs: 8,
+              sm: 16,
+              md: 24,
+              lg: 32,
+            }}
+          >
+            <Col>
               <a id="logo" href={"/"}>
                 <img
                   alt="logo"
@@ -45,17 +46,7 @@ export const HomeHeader = () => {
                 />
               </a>
             </Col>
-            <Col
-              gutter={{
-                xs: 8,
-                sm: 16,
-                md: 24,
-                lg: 32,
-              }}
-              offset={16}
-            >
-              {user != null ? <UserAvatar user={user} /> : null}
-            </Col>
+            <Col offset={16}>{user != null ? <UserAvatar /> : null}</Col>
           </Row>
         </div>
       </div>

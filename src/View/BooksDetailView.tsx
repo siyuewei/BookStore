@@ -30,7 +30,7 @@ export const BooksDetailView = () => {
           <Image
             alt="image"
             src={require(`../assets/books/${info.image}`)}
-            onClick={() => getBookByBookId(book.id)}
+            onClick={() => getBookByBookId(info.id)}
           />
         </div>
         <div className="des-group">
@@ -72,7 +72,7 @@ export const BooksDetailView = () => {
           danger
           icon={<ShoppingCartOutlined />}
           size={"large"}
-          onClick={() => addCart(book.id, 1, 1)}
+          onClick={() => addCart(info.id, 1, 1)}
         >
           加入购物车
         </Button>

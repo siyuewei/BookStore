@@ -13,6 +13,7 @@ import { OrderView } from "../View/OrderView";
 import { ProfileView } from "../View/ProfileView";
 import { BooksDetailView } from "../View/BooksDetailView";
 import { LoginView } from "../View/LoginView";
+import { RegisterView } from "../View/RegisterView";
 // import {Excel} from "../View/ExcelView";
 export const Router = () => {
   return (
@@ -29,6 +30,7 @@ export const Router = () => {
           <Route path="/home" element={<Navigate to="/home/books" />}></Route>
         </Route>
         <Route path="/login" element={<LoginView />}></Route>
+        <Route path="/register" element={<RegisterView />}></Route>
         {/*<Route path={"/books/:id"} element={<BooksDetailView />} />*/}
       </Routes>
     </BrowserRouter>

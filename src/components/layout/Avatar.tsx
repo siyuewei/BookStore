@@ -2,9 +2,12 @@ import { Avatar, Button, Dropdown, Menu, Modal } from "antd";
 import React, { useState } from "react";
 import "../../css/index.css";
 import { Link } from "react-router-dom";
-import cookie from "react-cookies";
+import { Cookies } from "react-cookie";
 
-export const UserAvatar = (props) => {
+export const UserAvatar = () => {
+  const cookie = new Cookies();
+  const user = cookie.get("currentUser");
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleLogout = () => {
     setIsModalVisible(true); // 显示弹出框
@@ -38,9 +41,9 @@ export const UserAvatar = (props) => {
   return (
     <div id="avatar">
       <Dropdown overlay={menu} placement="bottomCenter">
-        <Avatar src={props.user.avatar} style={{ cursor: "pointer" }} />
+        <Avatar src={user.avatar} style={{ cursor: "pointer" }} />
       </Dropdown>
-      <div className="name">Hi, {props.user.username}</div>
+      <div className="name">Hi, {user.username}</div>
 
       <Modal // 弹出框组件
         title="Are you sure you want to log out?"

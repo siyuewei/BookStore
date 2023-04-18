@@ -8,11 +8,12 @@ import {
   AntDesignOutlined,
 } from "@ant-design/icons";
 import { InputProfile } from "../components/layout/InputProfile";
-import cookie from "react-cookies";
+import { Cookies } from "react-cookie";
 
 const { TextArea } = Input;
 export const ProfileView = () => {
-  const user = cookie.load("currentUser");
+  const cookie = new Cookies();
+  const user = cookie.get("currentUser");
 
   const handleCancel = () => {};
 
@@ -28,7 +29,7 @@ export const ProfileView = () => {
             {
               placeholder: "Your Name",
               icon: { icon: UserOutlined, className: "site-form-item-icon" },
-              defaultValue: user.username,
+              defaultValue: user.name,
             },
             // {
             //   placeholder: "Your Last Name",
@@ -47,7 +48,7 @@ export const ProfileView = () => {
 
         <h4>Twitter</h4>
         <InputProfile
-          placeholder="Your Last Name"
+          placeholder="123@example.com"
           icon={{ icon: TwitterOutlined, className: "site-form-item-icon" }}
           defaultValue={user.email}
         />

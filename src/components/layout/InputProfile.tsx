@@ -3,7 +3,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import React from "react";
 import "../../css/Home.css";
 
-export const InputProfile = (props) => {
+export const InputProfile = (props: any) => {
   const { placeholder, icon, style } = props;
   const { icon: Icon, className: iconClassName } = icon;
   return (

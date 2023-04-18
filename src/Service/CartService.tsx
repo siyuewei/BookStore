@@ -1,6 +1,6 @@
 import { apiUrl } from "../constant/constant";
 
-export async function addCart(bookId, userId, amount) {
+export async function addCart(bookId: number, userId: number, amount: number) {
   return await fetch(apiUrl + "/cart/add", {
     method: "POST",
     headers: {
@@ -25,7 +25,11 @@ export async function addCart(bookId, userId, amount) {
     });
 }
 
-export async function changeBookAmount(bookId, userId, amount) {
+export async function changeBookAmount(
+  bookId: number,
+  userId: number,
+  amount: number
+) {
   return await fetch(apiUrl + "/cart/change", {
     method: "POST",
     headers: {
@@ -41,7 +45,7 @@ export async function changeBookAmount(bookId, userId, amount) {
   });
 }
 
-export async function deleteBook(bookId, userId) {
+export async function deleteBook(bookId: number, userId: number) {
   return await fetch(
     apiUrl + "/cart/delete?userId=" + userId + "&bookId=" + bookId,
     {
@@ -52,7 +56,7 @@ export async function deleteBook(bookId, userId) {
   });
 }
 
-export async function getCart(userId) {
+export async function getCart(userId: number) {
   return await fetch(apiUrl + "/cart/get/" + userId)
     .then((response) => response.json())
     .catch((error) => {

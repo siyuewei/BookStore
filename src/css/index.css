@@ -98,3 +98,30 @@
     color: #000000 !important;
 }
 
+/*login*/
+.login {
+    /*弹性布局 让子元素称为弹性项目*/
+    display: flex;
+    /*让弹性项目垂直排列  原理是改变弹性盒子的主轴方向
+    父元素就是弹性盒子  现在改变后的主轴方向是向下了*/
+    flex-direction: column;
+    /*让弹性项目在交叉轴方向水平居中  现在主轴的方向是向下
+    交叉轴的方向是与主轴垂直 交叉轴的方向是向右*/
+    align-items: center;
+    width: 400px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login_background {
+    /*弹性布局 让页面元素垂直+水平居中*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*让页面始终占浏览器可视区域总高度*/
+    height: 100vh;
+    /*背景渐变色*/
+    /*background: linear-gradient(#141e30, #243b55);*/
+    background: whitesmoke;
+}

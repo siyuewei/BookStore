@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/Home.css";
-import { Input } from "antd";
 import { CartTable } from "../components/book/CartTable";
 
 export const CartView = () => {
