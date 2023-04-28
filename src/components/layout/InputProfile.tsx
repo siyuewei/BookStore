@@ -3,7 +3,14 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import React from "react";
 import "../../css/Home.css";
 
-export const InputProfile = (props: any) => {
+interface InputProfileProps {
+  placeholder: string;
+  defaultValue?: string;
+  icon: { icon: any; className: string };
+  style?: React.CSSProperties;
+}
+
+export const InputProfile = (props: InputProfileProps) => {
   const { placeholder, icon, style } = props;
   const { icon: Icon, className: iconClassName } = icon;
   return (

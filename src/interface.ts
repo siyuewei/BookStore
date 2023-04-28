@@ -17,7 +17,7 @@ export interface IBook {
 }
 
 export interface IUser {
-  id: 3;
+  id: number;
   username: String;
   password: String;
   email: String;
@@ -28,4 +28,17 @@ export interface IUser {
 export interface IUserAuth {
   username: String;
   password: String;
+}
+
+export interface IOrderItem {
+  id: number;
+  amount: number;
+  book: IBook;
+}
+
+export interface IOrder {
+  id: number;
+  orderItems: IOrderItem[];
+  purchaseTime: Date;
+  totalPrice: number;
 }

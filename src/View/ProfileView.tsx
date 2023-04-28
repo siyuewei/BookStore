@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../css/Home.css";
-import { Avatar, Button, Input, Space } from "antd";
+import { Avatar, Button, Input, Space, Tooltip } from "antd";
 import {
   TwitterOutlined,
   UserOutlined,
   UploadOutlined,
   AntDesignOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 import { InputProfile } from "../components/layout/InputProfile";
 import { Cookies } from "react-cookie";
@@ -15,9 +16,17 @@ export const ProfileView = () => {
   const cookie = new Cookies();
   const user = cookie.get("currentUser");
 
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const noteRef = useRef(null);
+
   const handleCancel = () => {};
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    console.log(nameRef.current);
+    console.log(emailRef.current);
+    console.log(noteRef.current);
+  };
 
   return (
     <div style={{ width: "100%" }}>
@@ -25,32 +34,61 @@ export const ProfileView = () => {
         <h1>My Profile</h1>
         <h4>Name</h4>
         <div className="name">
-          {[
-            {
-              placeholder: "Your Name",
-              icon: { icon: UserOutlined, className: "site-form-item-icon" },
-              defaultValue: user.name,
-            },
-            // {
-            //   placeholder: "Your Last Name",
-            //   icon: { icon: UserOutlined, className: "site-form-item-icon" },
-            // },
-          ].map((inputProps, index) => (
-            <div style={{ flex: 1 }}>
-              <InputProfile
-                key={index}
-                {...inputProps}
-                style={{ width: "100%" }}
-              />
-            </div>
-          ))}
+          {/*{[*/}
+          {/*  {*/}
+          {/*    */}
+          {/*  },*/}
+          {/*  // {*/}
+          {/*  //   placeholder: "Your Last Name",*/}
+          {/*  //   icon: { icon: UserOutlined, className: "site-form-item-icon" },*/}
+          {/*  // },*/}
+          {/*].map((inputProps, index) => (*/}
+          <div style={{ flex: 1 }}>
+            <Input
+              placeholder="Your Name"
+              prefix={
+                <div>
+                  <UserOutlined className="site-form-item-icon" />
+                  Email:
+                </div>
+              }
+              suffix={
+                <Tooltip title="Extra information">
+                  <InfoCircleOutlined
+                    style={{
+                      color: "rgba(0,0,0,.45)",
+                    }}
+                  />
+                </Tooltip>
+              }
+              defaultValue={user.name}
+              ref={nameRef}
+              style={{ width: "100%" }}
+            />
+          </div>
+          {/*))}*/}
         </div>
 
         <h4>Twitter</h4>
-        <InputProfile
+        <Input
           placeholder="123@example.com"
-          icon={{ icon: TwitterOutlined, className: "site-form-item-icon" }}
+          prefix={
+            <div>
+              <TwitterOutlined className="site-form-item-icon" />
+              Email:
+            </div>
+          }
+          suffix={
+            <Tooltip title="Extra information">
+              <InfoCircleOutlined
+                style={{
+                  color: "rgba(0,0,0,.45)",
+                }}
+              />
+            </Tooltip>
+          }
           defaultValue={user.email}
+          ref={emailRef}
         />
       </div>
 
@@ -77,6 +115,7 @@ export const ProfileView = () => {
             rows={4}
             style={{ width: "100%" }}
             defaultValue={user.notes}
+            ref={noteRef}
           />
           <div
             style={{

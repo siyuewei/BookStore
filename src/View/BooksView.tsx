@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { Carousel, Input, Space } from "antd";
+import { Input } from "antd";
 import { BookList } from "../components/book/BookList";
 import { BookCarousel } from "../components/book/Carousel";
 import "../css/Book.css";
 
 const { Search } = Input;
-const onSearch = (value: string) => console.log(value);
 
 export const BooksView = () => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = (value: string) => {
+    setSearchValue(value);
+  };
+
   return (
     <div className="allView">
-      <Search placeholder="input search text" onSearch={onSearch} enterButton />
+      <Search
+        placeholder="input search text"
+        onChange={(value) => {
+          handleChange(value.target.value);
+        }}
+        enterButton
+      />
       <BookCarousel />
-      <BookList />
+      <BookList searchValue={searchValue} />
     </div>
   );
 };

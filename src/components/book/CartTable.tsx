@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "../../css/Home.css";
 import { Space, Table, Tag, Button, InputNumber, Image, Input } from "antd";
 import {
@@ -8,52 +8,33 @@ import {
 } from "../../Service/CartService";
 import { ICartData } from "../../interface";
 import { cartData } from "../../data";
+import { Cookies } from "react-cookie";
 
 const { Search } = Input;
 const { Column } = Table;
 
-export const CartTable = () => {
-  const [allData, setAllData] = useState<ICartData[]>(cartData);
-  const [filterData, setFilterData] = useState<ICartData[]>(cartData);
+interface ICartTableProps {
+  filterData: ICartData[];
+  setFilterData: Function;
+  allData: ICartData[];
+  setAllData: Function;
+  handleUpdate: Function;
+}
 
-  useEffect(() => {
-    getCart(1).then((res: ICartData[]) => {
-      setAllData(res);
-      setFilterData(res);
-    });
-  }, []);
-
-  const handleUpdate = (value: ICartData) => {
-    if (value.book && value.userId && value.amount)
-      changeBookAmount(value.book.id, value.userId, value.amount);
-    else {
-      alert("Error: bookId or userId or amount is null");
-    }
-  };
-
-  const handleSearch = (value: string) => {
-    if (value === "") {
-      setFilterData(allData);
-      return;
-    }
-    setFilterData(
-      allData.filter((item: ICartData) => item.book.name.includes(value))
-    );
-  };
-
+export const CartTable = ({
+  filterData,
+  setFilterData,
+  allData,
+  setAllData,
+  handleUpdate,
+}: ICartTableProps) => {
   return (
     <>
-      <Search
-        placeholder="input search text"
-        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          handleSearch(event.target.value);
-        }}
-        enterButton
-      />
       {filterData && (
         <Table
           dataSource={filterData}
-          pagination={{ pageSize: 4 }}
+          // pagination={{ pageSize: 4 }}
+          pagination={false}
           // className="custom-table"
         >
           <Column

@@ -7,12 +7,16 @@ import "../css/bookDetail.css";
 import { getBookByBookId } from "../Service/BookService";
 import { addCart } from "../Service/CartService";
 import { IBook } from "../interface";
+import { Cookies } from "react-cookie";
 
 export const BooksDetailView = () => {
   const book = useParams();
   const info: IBook = bookData.find(
     (item: IBook) => item.id.toString() === book.id
   )!;
+
+  const cookie = new Cookies();
+  const user = cookie.get("currentUser");
 
   return (
     <div className={"content"}>
@@ -72,7 +76,7 @@ export const BooksDetailView = () => {
           danger
           icon={<ShoppingCartOutlined />}
           size={"large"}
-          onClick={() => addCart(info.id, 1, 1)}
+          onClick={() => addCart(info.id, user.id, 1)}
         >
           加入购物车
         </Button>

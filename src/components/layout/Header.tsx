@@ -46,7 +46,7 @@ export const HomeHeader = () => {
                 />
               </a>
             </Col>
-            <Col offset={16}>{user != null ? <UserAvatar /> : null}</Col>
+            <Col offset={15}>{user != null ? <UserAvatar /> : null}</Col>
           </Row>
         </div>
       </div>
