@@ -1,12 +1,56 @@
 import { Avatar, Button, Dropdown, Menu, Modal } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/index.css";
 import { Link } from "react-router-dom";
 import { Cookies } from "react-cookie";
+import { getImg } from "../../Service/ImageService";
 
 export const UserAvatar = () => {
   const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const [user, setUser] = useState(cookie.get("currentUser"));
+  const [img, setImg] = useState<string | null>(null);
+  const [imgUrl, setImgUrl] = useState<string | null>(user.avatar);
+
+  useEffect(() => {
+    if (imgUrl === null) return;
+    getImg(imgUrl).then((blob) => {
+      if (blob === null) return;
+      setImg(URL.createObjectURL(blob!));
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   const updateUser = () => {
+  //     console.log("updateUser");
+  //     setUser(cookie.get("currentUser"));
+  //   };
+  //
+  //   // 监听 currentUser 变化
+  //   cookie.addChangeListener(updateUser);
+  //
+  //   // 清除监听器
+  //   return () => {
+  //     cookie.removeChangeListener(updateUser);
+  //   };
+  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const updatedUser = cookie.get("currentUser");
+      if (updatedUser !== user) {
+        console.log("updateUser");
+        setUser(updatedUser);
+        setImgUrl(updatedUser.avatar);
+        getImg(updatedUser.avatar).then((blob) => {
+          if (blob === null) return;
+          setImg(URL.createObjectURL(blob!));
+        });
+      }
+    }, 1000); // 每秒轮询检查一次
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleLogout = () => {
@@ -41,7 +85,7 @@ export const UserAvatar = () => {
   return (
     <div id="avatar">
       <Dropdown overlay={menu} placement="bottomCenter">
-        <Avatar src={user.avatar} style={{ cursor: "pointer" }} />
+        <Avatar src={img} style={{ cursor: "pointer" }} />
       </Dropdown>
       <div className="name">Hi, {user.username}</div>
 

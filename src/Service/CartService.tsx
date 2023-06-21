@@ -67,7 +67,9 @@ export async function getCart(userId: number) {
 export async function checkOutCart(userId: number) {
   return await fetch(apiUrl + "/cart/checkout/" + userId, {
     method: "DELETE",
-  }).catch((error) => {
-    console.error("Error:", error);
-  });
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }

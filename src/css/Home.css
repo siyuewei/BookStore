@@ -11,20 +11,20 @@
     margin: 16px 0 16px 24px;
 }
 
-h1 {
-    font-family: serif;
-    font-size: 1.8rem;
-    color: #282c34;
-}
+/*h1 {*/
+/*    font-family: serif;*/
+/*    font-size: 1.8rem;*/
+/*    color: #282c34;*/
+/*}*/
 
-h3 {
-    font-family: serif;
-    font-size: 1.8rem;
-}
+/*h3 {*/
+/*    font-family: serif;*/
+/*    font-size: 1.8rem;*/
+/*}*/
 
-h4 {
-    color: #282c34;
-}
+/*h4 {*/
+/*    color: #282c34;*/
+/*}*/
 
 /*.header {*/
 /*    color: black;*/
@@ -79,6 +79,7 @@ h4 {
     margin-top: 20px;
     margin-bottom: 25px;
 }
+
 .carousel-img {
     flex: 1;
     height: auto;
@@ -93,7 +94,7 @@ h4 {
     width: 100%;
 }
 
-.avatar-note{
+.avatar-note {
     display: flex;
     width: 100%;
     align-items: flex-start;

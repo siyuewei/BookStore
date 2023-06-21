@@ -1,6 +1,6 @@
 import { IBook, ICartData } from "./interface";
 
-export const bookData: IBook[] = [
+export const bookData = [
   {
     id: 1,
     name: "Effective C++",
@@ -138,7 +138,7 @@ export const bookData: IBook[] = [
   },
 ];
 
-export const cartData: ICartData[] = [
+export const cartData = [
   {
     id: 1,
     amount: 1,
@@ -236,4 +236,11 @@ export const orderData = [
     amount: "1",
     purchaseTime: "2015-06-05",
   },
+];
+
+const avatar = [
+  "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
+  "https://randomuser.me/api/portraits/lego/2.jpg",
+  "https://randomuser.me/api/portraits/lego/1.jpg",
+  "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
 ];

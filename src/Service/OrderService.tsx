@@ -23,3 +23,11 @@ export async function deleteOrderItem(orderId: number) {
     console.error("Error:", error);
   });
 }
+
+export async function getAllOrder() {
+  return await fetch(apiUrl + "/order/getAll", { method: "GET" })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

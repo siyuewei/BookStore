@@ -62,6 +62,7 @@ table {
     margin-top: 20px;
     margin-bottom: 25px;
 }
+
 .carousel-img {
     flex: 1;
     height: auto;
@@ -88,9 +89,9 @@ table {
 }
 
 .book-img {
-    height: 200px;
+    height: 180px;
     width: 100%;
-    object-fit: cover;
+    /*object-fit: cover;*/
 }
 
 h1 {
@@ -113,29 +114,32 @@ h1 {
     font-size: 1px !important;
     white-space: normal !important;
     text-align: left !important;
-    overflow: hidden!important;/*隐藏文本溢出*/
-    text-overflow: ellipsis!important; /*在文本末尾添加省略号*/
+    overflow: hidden !important; /*隐藏文本溢出*/
+    text-overflow: ellipsis !important; /*在文本末尾添加省略号*/
 }
 
 .ant-card-meta-description {
     /*content: "PRICE";*/
     color: red !important;
     margin-bottom: -1px !important;
-    white-space: nowrap!important; /*防止文本换行*/
-    overflow: hidden!important; /*隐藏文本溢出*/
-    text-overflow: ellipsis!important; /*在文本末尾添加省略号*/
+    white-space: nowrap !important; /*防止文本换行*/
+    overflow: hidden !important; /*隐藏文本溢出*/
+    text-overflow: ellipsis !important; /*在文本末尾添加省略号*/
 }
 
 @media screen and (max-width: 768px) {
     .ant-table {
         font-size: 12px;
     }
+
     .ant-table-column-title {
         display: none;
     }
+
     .ant-table-thead > tr > th:first-child {
         display: none;
     }
+
     .ant-table-tbody > tr > td:first-child {
         font-weight: bold;
     }

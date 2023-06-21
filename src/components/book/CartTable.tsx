@@ -30,6 +30,11 @@ export const CartTable = ({
 }: ICartTableProps) => {
   return (
     <>
+      <>
+        {/*{filterData.map((data) => {*/}
+        {/*  console.log(data);*/}
+        {/*})}*/}
+      </>
       {filterData && (
         <Table
           dataSource={filterData}
@@ -37,15 +42,15 @@ export const CartTable = ({
           pagination={false}
           // className="custom-table"
         >
-          <Column
-            title="Cover"
-            render={(value: ICartData) => (
-              <Image
-                src={require("../../assets/books/" + value.book.image)}
-                style={{ width: 25, height: 30 }}
-              />
-            )}
-          />
+          {/*<Column*/}
+          {/*  title="Cover"*/}
+          {/*  render={(value: ICartData) => (*/}
+          {/*    <Image*/}
+          {/*      src={require("../../assets/books/" + value.book.image)}*/}
+          {/*      style={{ width: 25, height: 30 }}*/}
+          {/*    />*/}
+          {/*  )}*/}
+          {/*/>*/}
           <Column
             title="Title"
             render={(value: ICartData) => value.book.name}
@@ -56,9 +61,11 @@ export const CartTable = ({
               <Space size="middle">
                 <InputNumber
                   min={1}
-                  max={10}
-                  defaultValue={value.amount}
+                  max={100}
+                  // defaultValue={value.amount}
+                  value={value.amount}
                   onChange={(event) => {
+                    console.log(event);
                     const data: ICartData = {
                       ...value,
                       amount: event!,
@@ -66,6 +73,7 @@ export const CartTable = ({
                     handleUpdate(data);
                   }}
                 />
+                {/*<>{value.amount}</>*/}
               </Space>
             )}
           />

@@ -14,29 +14,45 @@ import {
 import Search from "antd/es/input/Search";
 
 const handleCheckout = (userId: number) => {
-  checkOutCart(userId).then(() => {
-    window.location.href = "checkOut";
+  checkOutCart(userId).then((res) => {
+    if (res.status === 0) window.location.href = "checkOut";
+    if (res.status === -1) {
+      alert(res.msg);
+    }
   });
 };
 
 export const CartView = () => {
-  const [allData, setAllData] = useState<ICartData[]>(cartData);
-  const [filterData, setFilterData] = useState<ICartData[]>(cartData);
+  const [allData, setAllData] = useState<ICartData[]>();
+  const [filterData, setFilterData] = useState<ICartData[]>();
 
   const cookie = new Cookies();
   const user = cookie.get("currentUser");
 
   useEffect(() => {
     getCart(user.id).then((res: ICartData[]) => {
+      const date = res.map((item: ICartData) => {
+        item.userId = user.id;
+      });
+      console.log(res);
       setAllData(res);
       setFilterData(res);
     });
   }, []);
 
   const handleUpdate = (value: ICartData) => {
-    if (value.book && value.userId && value.amount)
+    if (value.book && value.userId && value.amount) {
       changeBookAmount(value.book.id, value.userId, value.amount);
-    else {
+
+      const newData = allData!.map((item: ICartData) => {
+        if (item.book.id === value.book.id) {
+          item.amount = value.amount;
+        }
+        return item;
+      });
+      setAllData(newData);
+      setFilterData(newData);
+    } else {
       alert("Error: bookId or userId or amount is null");
     }
   };
@@ -46,8 +62,9 @@ export const CartView = () => {
       setFilterData(allData);
       return;
     }
+    if (allData === null) return;
     setFilterData(
-      allData.filter((item: ICartData) => item.book.name.includes(value))
+      allData!.filter((item: ICartData) => item.book.name.includes(value))
     );
   };
 
@@ -63,9 +80,9 @@ export const CartView = () => {
       />
       <div style={{ marginRight: "30px" }}>
         <CartTable
-          filterData={filterData}
+          filterData={filterData!}
           setFilterData={(data: ICartData[]) => setFilterData(data)}
-          allData={allData}
+          allData={allData!}
           setAllData={(data: ICartData[]) => setAllData(data)}
           handleUpdate={(data: ICartData) => handleUpdate(data)}
         />

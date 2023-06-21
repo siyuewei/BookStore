@@ -11,28 +11,38 @@ export interface IBook {
   isbn: string;
   author: string;
   inventory: number;
+  sales: number;
+  isDelete: boolean;
   description: string;
   price: number;
   image: string;
 }
 
+export enum IRole {
+  CUSTOMER,
+  ADMIN,
+}
+
 export interface IUser {
   id: number;
-  username: String;
-  password: String;
-  email: String;
-  avatar: String;
-  notes: String;
+  username: string;
+  password: string;
+  email: string;
+  avatar: string;
+  notes: string;
+  role: IRole;
+  status: boolean;
 }
 
 export interface IUserAuth {
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 }
 
 export interface IOrderItem {
   id: number;
   amount: number;
+  isDelete: boolean;
   book: IBook;
 }
 
@@ -41,4 +51,12 @@ export interface IOrder {
   orderItems: IOrderItem[];
   purchaseTime: Date;
   totalPrice: number;
+  isDelete: boolean;
+  user: IUser;
+}
+
+export interface IBookAmountPriceForm {
+  book: IBook;
+  amount: number;
+  price: number;
 }

@@ -1,0 +1,20 @@
+.ant-picker-range-separator {
+    margin: 0 8px;
+}
+
+.ant-picker-input {
+    width: 110px;
+}
+
+.ant-picker-range-wrapper {
+    min-width: 800px;
+}
+
+.ant-picker-panel-container {
+    min-width: 800px;
+}
+
+.ant-picker-panel {
+    min-width: 400px;
+}
+
