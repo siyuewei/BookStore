@@ -57,8 +57,7 @@ export const BooksDetailView = () => {
     return false; // 阻止默认上传行为
   };
 
-  const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
 
   const [bookNum, setBookNum] = useState(1);
 

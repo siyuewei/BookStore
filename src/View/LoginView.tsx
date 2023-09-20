@@ -1,19 +1,14 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import {
-  LoginForm,
-  ProFormCheckbox,
-  ProFormText,
-} from "@ant-design/pro-components";
+import { LoginForm, ProFormText } from "@ant-design/pro-components";
 import { useNavigate } from "react-router-dom";
 import logoPic from "../assets/logo.png";
-import { Cookies } from "react-cookie";
 import { IRole, IUser, IUserAuth } from "../interface";
 import { checkUser } from "../Service/UserService";
 import { message, notification } from "antd";
 import type { NotificationPlacement } from "antd/es/notification/interface";
 
 export const LoginView = () => {
-  const cookie = new Cookies();
+  // const cookie = new Cookies();
   const storeTime = new Date(new Date().getTime() + 60 * 1000 * 60 * 24 * 7); //设置cookie保存时间，一周
   const navigate = useNavigate();
 
@@ -52,10 +47,13 @@ export const LoginView = () => {
           role:
             res.data.role.toString() === "ADMIN" ? IRole.ADMIN : IRole.CUSTOMER,
         };
-        cookie.set("currentUser", user, {
-          path: "/",
-          maxAge: storeTime.getTime(),
-        });
+        // cookie.set("currentUser", user, {
+        //   path: "/",
+        //   maxAge: storeTime.getTime(),
+        // });
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        //用localStorage存储token
+        localStorage.setItem("token", res.data.token);
         message.success(res.msg, 3);
         navigate("/home");
       } else {

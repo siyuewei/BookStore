@@ -1,13 +1,14 @@
-import { Avatar, Button, Dropdown, Menu, Modal } from "antd";
+import { Avatar, Dropdown, Menu, Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import "../../css/index.css";
 import { Link } from "react-router-dom";
-import { Cookies } from "react-cookie";
 import { getImg } from "../../Service/ImageService";
+import { logout } from "../../Service/UserService";
 
 export const UserAvatar = () => {
-  const cookie = new Cookies();
-  const [user, setUser] = useState(cookie.get("currentUser"));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")!)
+  );
   const [img, setImg] = useState<string | null>(null);
   const [imgUrl, setImgUrl] = useState<string | null>(user.avatar);
 
@@ -35,9 +36,10 @@ export const UserAvatar = () => {
   // }, []);
   useEffect(() => {
     const interval = setInterval(() => {
-      const updatedUser = cookie.get("currentUser");
+      const updatedUser = JSON.parse(localStorage.getItem("currentUser")!);
       if (updatedUser !== user) {
-        console.log("updateUser");
+        //TODO : 优化，一秒监听一次过于频繁
+        // console.log("updateUser");
         setUser(updatedUser);
         setImgUrl(updatedUser.avatar);
         getImg(updatedUser.avatar).then((blob) => {
@@ -61,8 +63,16 @@ export const UserAvatar = () => {
     // 执行退出逻辑
     setIsModalVisible(false); // 隐藏弹出框
     // 退出登录
-    cookie.remove("currentUser");
-    window.location.href = "/login";
+    logout().then((res) => {
+      // console.log(res);
+      if (res.status === 0) {
+        // cookie.remove("currentUser");
+        window.location.href = "/login";
+        localStorage.removeItem("token");
+        localStorage.removeItem("currentUser");
+        alert("login time is " + res.data.time + "s");
+      }
+    });
   };
 
   const handleModalCancel = () => {

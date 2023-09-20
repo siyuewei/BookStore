@@ -5,14 +5,11 @@ import { BookCarousel } from "../components/book/Carousel";
 import "../css/Book.css";
 import { getBooks } from "../Service/BookService";
 import { IBook, IRole } from "../interface";
-import { bookData } from "../data";
-import { Cookies } from "react-cookie";
 
 const { Search } = Input;
 
 export const BooksView = () => {
-  const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
 
   const [data, setData] = useState<IBook[]>();
   const [filterData, setFilterData] = useState<IBook[]>();

@@ -3,10 +3,9 @@ import "../css/Home.css";
 import "../css/DataPicker.css";
 import { Col, DatePicker, Input, Row, Select } from "antd";
 import { OrderTable } from "../components/book/OrderTable";
-import { Cookies } from "react-cookie";
 import { getAllOrder, getOrder } from "../Service/OrderService";
 import { IOrder, IOrderItem, IRole } from "../interface";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;
@@ -43,8 +42,7 @@ export const OrderView = () => {
     setFilterData(newDate);
   };
 
-  const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
   const [data, setData] = useState<IOrder[]>([]);
   const [filterData, setFilterData] = useState<IOrder[]>([]);
 

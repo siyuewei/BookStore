@@ -4,26 +4,49 @@ import { IRole, IUserAuth } from "../interface";
 export async function checkUser(userAuth: IUserAuth) {
   return await fetch(
     apiUrl +
-      "/user/checkUser?username=" +
+      "/user/login?username=" +
       userAuth.username +
       "&password=" +
       userAuth.password,
     {
-      method: "GET",
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
     }
   )
     .then((res) => {
       return res.json();
     })
     .then((res) => {
-      if (res.role === "ADMIN") {
-        res.role = IRole.ADMIN;
-      } else if (res.role === "CUSTOMER") {
-        res.role = IRole.CUSTOMER;
+      if (res.status === 0) {
+        if (res.data.role === "ADMIN") {
+          res.data.role = IRole.ADMIN;
+        } else if (res.data.role === "CUSTOMER") {
+          res.data.role = IRole.CUSTOMER;
+        }
       }
       return res;
     })
     .catch((err) => console.log(err));
+}
+
+export async function logout() {
+  // console.log("logout");
+  return await fetch(apiUrl + "/user/logout", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+  })
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 export async function registerUser(
@@ -32,7 +55,7 @@ export async function registerUser(
   // name: string,
   email: string
 ) {
-  return await fetch(apiUrl + "/user/add", {
+  return await fetch(apiUrl + "/user/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

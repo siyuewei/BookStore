@@ -1,35 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Home.css";
+import { Button, Input, Space, Tooltip, Upload, UploadFile } from "antd";
 import {
-  Avatar,
-  Button,
-  Image,
-  Input,
-  InputRef,
-  Space,
-  Tooltip,
-  Upload,
-  UploadFile,
-} from "antd";
-import {
-  TwitterOutlined,
-  UserOutlined,
-  UploadOutlined,
-  AntDesignOutlined,
   InfoCircleOutlined,
   LoadingOutlined,
   PlusOutlined,
+  TwitterOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Cookies } from "react-cookie";
 import { updateAvatar, updateUser } from "../Service/UserService";
 import { getImg, UploadImg } from "../Service/ImageService";
-import { RcFile, UploadChangeParam, UploadProps } from "antd/es/upload";
-import { UserAvatar } from "../components/layout/Avatar";
 
 const { TextArea } = Input;
 export const ProfileView = () => {
-  const cookie = new Cookies();
-  let user = cookie.get("currentUser");
+  let user = JSON.parse(localStorage.getItem("currentUser")!);
 
   const [name, setName] = useState<string>(user.name);
   const [email, setEmail] = useState<string>(user.email);
@@ -44,7 +28,7 @@ export const ProfileView = () => {
   const handleSave = () => {
     updateUser(user.id, name, email, notes)
       .then(() => {
-        cookie.set("currentUser", {
+        localStorage.set("currentUser", {
           id: user.id,
           username: user.username,
           name: name,
@@ -104,12 +88,12 @@ export const ProfileView = () => {
         setImg(URL.createObjectURL(blob!));
       });
       updateAvatar(user.id, res.data.path).then(() => {
-        cookie.set("currentUser", {
+        localStorage.set("currentUser", {
           ...user,
           avatar: res.data.path,
         });
       });
-      user = cookie.get("currentUser");
+      user = JSON.parse(localStorage.getItem("currentUser")!);
     });
     return false; // 阻止默认上传行为
   };

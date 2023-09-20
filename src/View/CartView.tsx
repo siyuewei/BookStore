@@ -4,8 +4,6 @@ import { CartTable } from "../components/book/CartTable";
 import { Button } from "antd";
 import { MoneyCollectOutlined } from "@ant-design/icons";
 import { ICartData } from "../interface";
-import { cartData } from "../data";
-import { Cookies } from "react-cookie";
 import {
   changeBookAmount,
   checkOutCart,
@@ -26,8 +24,7 @@ export const CartView = () => {
   const [allData, setAllData] = useState<ICartData[]>();
   const [filterData, setFilterData] = useState<ICartData[]>();
 
-  const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
 
   useEffect(() => {
     getCart(user.id).then((res: ICartData[]) => {

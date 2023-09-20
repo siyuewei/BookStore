@@ -1,21 +1,14 @@
-import {
-  LockOutlined,
-  UserOutlined,
-  TwitterOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { LoginForm, ProFormText } from "@ant-design/pro-components";
 import { useNavigate } from "react-router-dom";
 import logoPic from "../assets/logo.png";
-import { Cookies } from "react-cookie";
-import { IRole, IUserAuth } from "../interface";
+import { IRole } from "../interface";
 import { checkUser, registerUser } from "../Service/UserService";
 import React from "react";
 
 export const RegisterView = () => {
   const navigate = useNavigate();
   const storeTime = new Date(new Date().getTime() + 60 * 1000 * 60 * 24 * 7); //设置cookie保存时间，一周
-  const cookie = new Cookies();
 
   //TODO: now register is not working, need to fix it
   //backend error the key is not unique for email
@@ -47,7 +40,7 @@ export const RegisterView = () => {
                     ? IRole.ADMIN
                     : IRole.CUSTOMER,
               };
-              cookie.set("currentUser", currentUser, {
+              localStorage.set("currentUser", currentUser, {
                 path: "/",
                 maxAge: storeTime.getTime(),
               });

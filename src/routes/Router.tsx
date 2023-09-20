@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import React from "react";
 import HomeView from "../View/HomeView";
 import { BooksView } from "../View/BooksView";
@@ -10,18 +10,14 @@ import { LoginView } from "../View/LoginView";
 import { RegisterView } from "../View/RegisterView";
 import { CartCheckOutView } from "../View/CartCheckOutView";
 import { UsersView } from "../View/UsersView";
-import { StatisticsAdminChartsView } from "../View/StatisticsAdminChartsView";
 import { TestView } from "../View/TestView";
 import { AddBookView } from "../View/AddBookView";
-import { Cookies } from "react-cookie";
-import { IRole, IUser } from "../interface";
+import { IUser } from "../interface";
 import { StatisticsCustomerView } from "../View/StatisticsCustomerView";
-import { StatisticsAdminTableOldView } from "../View/StatisticsAdminTableOldView";
 import { StatisticsAdminTableView } from "../View/StatisticsAdminTableView";
 
 export const Router = () => {
-  const cookies = new Cookies();
-  const user: IUser = cookies.get("currentUser");
+  const user: IUser = JSON.parse(localStorage.getItem("currentUser")!);
 
   return (
     <BrowserRouter>

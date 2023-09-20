@@ -1,18 +1,16 @@
-import { Cookies } from "react-cookie";
 import React, { useEffect, useState } from "react";
 import { getUserBookForm } from "../Service/BookService";
 import { DatePicker, Table } from "antd";
 import moment from "moment";
 import dayjs from "dayjs";
-import { IBook, IBookAmountPriceForm } from "../interface";
-import type { ColumnsType, TableProps } from "antd/es/table";
+import { IBookAmountPriceForm } from "../interface";
+import type { ColumnsType } from "antd/es/table";
 
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY-MM-DD";
 
 export function StatisticsCustomerView() {
-  const cookies = new Cookies();
-  const user = cookies.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
 
   //fix 8 hours difference
   const now = moment().add(8, "hours").toDate(); // Convert to Date object

@@ -1,16 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React from "react";
 import "../../css/Home.css";
-import { Space, Table, Tag, Button, InputNumber, Image, Input } from "antd";
-import {
-  changeBookAmount,
-  deleteBook,
-  getCart,
-} from "../../Service/CartService";
+import { Button, InputNumber, Space, Table, Tag } from "antd";
+import { deleteBook } from "../../Service/CartService";
 import { ICartData } from "../../interface";
-import { cartData } from "../../data";
-import { Cookies } from "react-cookie";
 
-const { Search } = Input;
 const { Column } = Table;
 
 interface ICartTableProps {

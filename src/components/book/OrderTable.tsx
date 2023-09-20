@@ -1,11 +1,9 @@
 import React from "react";
 import "../../css/Home.css";
-import { Button, DatePicker, Space, Table, Tag } from "antd";
+import { Button, Col, DatePicker, Row, Table, Tag } from "antd";
 import dayjs from "dayjs";
 import { IOrder, IOrderItem, IRole } from "../../interface";
 import { deleteOrder, deleteOrderItem } from "../../Service/OrderService";
-import { Col, Row } from "antd";
-import { Cookies } from "react-cookie";
 
 const dateFormat = "YYYY-MM-DD";
 const { Column } = Table;
@@ -18,8 +16,7 @@ interface IProps {
 }
 
 export const OrderTable = ({ order, data, setData, role }: IProps) => {
-  const cookie = new Cookies();
-  const user = cookie.get("currentUser");
+  const user = JSON.parse(localStorage.getItem("currentUser")!);
 
   const handleDeleteOrder = () => {
     function callBack() {

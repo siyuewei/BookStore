@@ -35,7 +35,8 @@ export function BookCard({
     getImg(image).then((blob) => {
       if (blob === null) return;
       setImg(URL.createObjectURL(blob!));
-      console.log("img is", URL.createObjectURL(blob!));
+      //TODO: delete this line
+      // console.log("img is", URL.createObjectURL(blob!));
     });
   }, []);
 
