@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import "../css/Home.css";
 import { CartTable } from "../components/book/CartTable";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import { MoneyCollectOutlined } from "@ant-design/icons";
 import { ICartData } from "../interface";
 import {
@@ -10,10 +10,29 @@ import {
   getCart,
 } from "../Service/CartService";
 import Search from "antd/es/input/Search";
+import { closeWebSocket, createWebSocket } from "../utils/webSocket";
+
+const remindInfoCheck = (
+  type: "success" | "info" | "warning" | "error",
+  content: string
+) => {
+  notification[type]({
+    message: "Notification",
+    description: content,
+  });
+};
 
 const handleCheckout = (userId: number) => {
   checkOutCart(userId).then((res) => {
-    if (res.status === 0) window.location.href = "checkOut";
+    if (res.status === 0) {
+      remindInfoCheck("success", "Order submitted successfully!");
+      let url = "ws://localhost:8080/websocket/" + userId.toString();
+      createWebSocket(url, (info) => {
+        remindInfoCheck("success", info.data);
+        closeWebSocket();
+        // window.location.href = "checkOut";
+      });
+    }
     if (res.status === -1) {
       alert(res.msg);
     }
