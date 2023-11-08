@@ -30,6 +30,11 @@ const handleCheckout = (userId: number) => {
       createWebSocket(url, (info) => {
         remindInfoCheck("success", info.data);
         closeWebSocket();
+
+        // 等待两个remindInfoCheck都弹出后，过2秒再刷新页面
+        setTimeout(() => {
+          window.location.href = "checkOut";
+        }, 2000);
         // window.location.href = "checkOut";
       });
     }

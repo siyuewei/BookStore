@@ -5,6 +5,7 @@ import { BookCarousel } from "../components/book/Carousel";
 import "../css/Book.css";
 import { getBooks } from "../Service/BookService";
 import { IBook, IRole } from "../interface";
+import {getAuthorByBookName} from "../Service/MicroService";
 
 const { Search } = Input;
 
@@ -32,6 +33,19 @@ export const BooksView = () => {
   };
 
   const [isDelete, setIsDelete] = useState(false);
+  const [author,setAuthor] = useState("")
+
+    const getAuthor=(bookName: String)=>{
+        getAuthorByBookName(bookName).then((res)=>{
+            console.log(res)
+            if(res.status === 0){
+                setAuthor(res.data.author)
+            }
+            else{
+                setAuthor(res.msg)
+            }
+        })
+    }
 
   return (
     <div className="allView">
@@ -42,6 +56,16 @@ export const BooksView = () => {
         }}
         enterButton
       />
+        <hr/>
+      <Search
+          placeholder={"search author by book name"}
+          onSearch={(value)=>{
+              getAuthor(value);
+          }}
+          enterButton
+      >
+        </Search>
+        {author === "" ?<></>:<div>{author}</div>}
       <BookCarousel />
       <BookList
         filterData={filterData!}

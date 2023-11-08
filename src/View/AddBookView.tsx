@@ -88,6 +88,7 @@ export function AddBookView() {
       getImg(res.data.path).then((blob) => {
         if (blob === null) return;
         setImg(URL.createObjectURL(blob!));
+        // console.log("get image")
       });
       setInfo({ ...info, image: res.data.path });
     });
