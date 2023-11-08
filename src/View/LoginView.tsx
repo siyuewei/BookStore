@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import logoPic from "../assets/logo.png";
 import { IRole, IUser, IUserAuth } from "../interface";
 import { checkUser } from "../Service/UserService";
-import { message, notification } from "antd";
+import {Button, message, notification} from "antd";
 import type { NotificationPlacement } from "antd/es/notification/interface";
+import {getAuthorByBookName} from "../Service/MicroService";
 
 export const LoginView = () => {
   // const cookie = new Cookies();
@@ -62,10 +63,21 @@ export const LoginView = () => {
     });
   };
 
+  const getAuthor=()=>{
+    getAuthorByBookName("Java编程思想").then((res)=>{
+      console.log(res)
+    })
+  }
+
+
   return (
     <>
       <div className={"login_background"}>
         <div className={"login"}>
+          <Button onClick={()=>getAuthor()}>
+            test
+          </Button>
+
           <LoginForm
             logo={logoPic}
             title="BookStore"

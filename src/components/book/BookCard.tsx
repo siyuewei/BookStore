@@ -38,6 +38,7 @@ export function BookCard({
       //TODO: delete this line
       // console.log("img is", URL.createObjectURL(blob!));
     });
+    // console.log(title)
   }, []);
 
   const handleDelete = () => {
@@ -65,6 +66,7 @@ export function BookCard({
             }}
             cover={<Image className="book-img" alt="image" src={img!} />}
           >
+            <div>{title}</div>
             <Meta title={title} description={"¥" + price} />
           </Card>
         </Link>
