@@ -43,10 +43,9 @@ export const LoginView = () => {
   const handleSubmit = async (values: IUserAuth) => {
     checkUser(values).then((res) => {
       if (res.status === 0) {
+        // console.log(res.data.role);
         const user: IUser = {
           ...res.data,
-          role:
-            res.data.role.toString() === "ADMIN" ? IRole.ADMIN : IRole.CUSTOMER,
         };
         // cookie.set("currentUser", user, {
         //   path: "/",

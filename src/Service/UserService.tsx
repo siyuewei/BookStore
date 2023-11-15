@@ -22,12 +22,14 @@ export async function checkUser(userAuth: IUserAuth) {
     })
     .then((res) => {
       if (res.status === 0) {
-        if (res.data.role === "ADMIN") {
+        // console.log(res.data.role.toString() === "ADMIN")
+        if (res.data.role.toString() === "ADMIN") {
           res.data.role = IRole.ADMIN;
-        } else if (res.data.role === "CUSTOMER") {
+        } else if (res.data.role.toString() === "CUSTOMER") {
           res.data.role = IRole.CUSTOMER;
         }
       }
+      console.log(res.data.role)
       return res;
     })
     .catch((err) => console.log(err));

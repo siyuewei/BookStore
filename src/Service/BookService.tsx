@@ -20,6 +20,7 @@ export async function getBooks() {
 }
 
 export async function updateBook(book: IBook) {
+  console.log("update book: ",book)
   return await fetch(apiUrl + "/book/update", {
     method: "POST",
     headers: {
