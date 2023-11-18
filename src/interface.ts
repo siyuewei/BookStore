@@ -16,6 +16,7 @@ export interface IBook {
   description: string;
   price: number;
   image: string;
+  tag: string;
 }
 
 export enum IRole {

@@ -55,6 +55,7 @@ export const BookList = ({
           <List.Item>
             <BookCard
               image={item.image}
+              tag={item.tag}
               title={item.name}
               price={item.price}
               id={item.id}

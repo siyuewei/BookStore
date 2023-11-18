@@ -113,3 +113,11 @@ export async function getUserBookForm(
     .then((res) => res.json())
     .catch((err) => console.log(err));
 }
+
+export async function searchBookByTag(Tag: String) {
+  return await fetch(apiUrl + "/book/searchByTag?tag=" + Tag, {
+    method: "GET",
+  })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+}

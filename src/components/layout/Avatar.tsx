@@ -70,7 +70,7 @@ export const UserAvatar = () => {
         window.location.href = "/login";
         localStorage.removeItem("token");
         localStorage.removeItem("currentUser");
-        alert("login time is " + res.data.time + "s");
+        alert("login time is " + res.data.time / 1000.0 + "s");
       }
     });
   };

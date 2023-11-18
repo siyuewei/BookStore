@@ -1,9 +1,8 @@
-import { Button, Descriptions, Image, Input, Upload, UploadFile } from "antd";
-import { addBook, getBookByBookId, updateBook } from "../Service/BookService";
-import React, { useEffect, useState } from "react";
+import { Button, Descriptions, Input, Upload, UploadFile } from "antd";
+import { addBook,  } from "../Service/BookService";
+import React, {  useState } from "react";
 import { IBook } from "../interface";
 import { getImg, UploadImg } from "../Service/ImageService";
-import { updateAvatar } from "../Service/UserService";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
 export function AddBookView() {
@@ -18,6 +17,7 @@ export function AddBookView() {
     isDelete: false,
     description: "",
     image: "",
+    tag:""
   });
   const [tmpInfo, setTmpInfo] = useState<IBook>({
     id: 0,
@@ -30,6 +30,7 @@ export function AddBookView() {
     isDelete: false,
     description: "",
     image: "",
+    tag:""
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +51,8 @@ export function AddBookView() {
       info.isbn &&
       info.description &&
       info.image &&
-      info.inventory >= 0
+      info.inventory >= 0 &&
+        info.tag !== ""
     ) {
       addBook(info).then((res) => {
         if (res.status === 0) {
@@ -72,6 +74,8 @@ export function AddBookView() {
         alert("Price should be positive!");
       } else if (info.inventory < 0) {
         alert("Inventory should be positive!");
+      } else if (info.tag === "") {
+        alert("Tag should not be null!");
       } else {
         alert("Please fill all the information!");
       }
@@ -159,10 +163,21 @@ export function AddBookView() {
                 onChange={handleInputChange}
               />
             </Descriptions.Item>
+            <Descriptions.Item label={"Tag"} span={3}>
+              <Input
+                  name={"tag"}
+                  value={info.tag}
+                  onChange={handleInputChange}
+              />
+            </Descriptions.Item>
           </Descriptions>
         </div>
       </div>
       <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
       <div className={"book-intro"}>
         <Descriptions className="int-des">
           <Descriptions.Item label={"Introduce"} span={3}>

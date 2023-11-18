@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, Image, Radio } from "antd";
+import { Button, Card, Image, Tag } from "antd";
 import "../../css/Book.css";
 import { deleteBook } from "../../Service/BookService";
 import { getImg } from "../../Service/ImageService";
@@ -9,6 +9,7 @@ const { Meta } = Card;
 
 interface BookCardProps {
   image: string;
+  tag:string;
   title: string;
   price: number;
   id: number;
@@ -18,7 +19,7 @@ interface BookCardProps {
 }
 
 export function BookCard({
-  image,
+  image, tag,
   title,
   price,
   id,
@@ -67,6 +68,7 @@ export function BookCard({
             cover={<Image className="book-img" alt="image" src={img!} />}
           >
             <div>{title}</div>
+            <Tag color="processing">{tag}</Tag>
             <Meta title={title} description={"¥" + price} />
           </Card>
         </Link>

@@ -3,7 +3,7 @@ import { Button, Input } from "antd";
 import { BookList } from "../components/book/BookList";
 import { BookCarousel } from "../components/book/Carousel";
 import "../css/Book.css";
-import { getBooks } from "../Service/BookService";
+import {getBooks, searchBookByTag} from "../Service/BookService";
 import { IBook, IRole } from "../interface";
 import {getAuthorByBookName} from "../Service/MicroService";
 
@@ -47,6 +47,16 @@ export const BooksView = () => {
         })
     }
 
+    const searchBooks = (tag : String)=>{
+      if(tag === ""){
+          setFilterData(data);
+      }else{
+          searchBookByTag(tag).then((res:IBook[])=>{
+              setFilterData(res);
+          })
+      }
+    }
+
   return (
     <div className="allView">
       <Search
@@ -64,6 +74,14 @@ export const BooksView = () => {
           }}
           enterButton
       >
+        </Search>
+        <Search
+            placeholder={"search books by tag"}
+            onSearch={(value)=>{
+                searchBooks(value);
+            }}
+            enterButton
+        >
         </Search>
         {author === "" ?<></>:<div>{author}</div>}
       <BookCarousel />
