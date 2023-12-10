@@ -3,7 +3,7 @@ import { Button, Input } from "antd";
 import { BookList } from "../components/book/BookList";
 import { BookCarousel } from "../components/book/Carousel";
 import "../css/Book.css";
-import {getBooks, searchBookByTag} from "../Service/BookService";
+import {getBookByName, getBooks, searchBookByTag} from "../Service/BookService";
 import { IBook, IRole } from "../interface";
 import {getAuthorByBookName} from "../Service/MicroService";
 
@@ -15,12 +15,14 @@ export const BooksView = () => {
   const [data, setData] = useState<IBook[]>();
   const [filterData, setFilterData] = useState<IBook[]>();
 
+
   useEffect(() => {
     console.log("getBooks");
     getBooks().then((res: IBook[]) => {
       setData(res);
       setFilterData(res);
     });
+
   }, []);
 
   const handleSearch = (value: string) => {
@@ -57,7 +59,20 @@ export const BooksView = () => {
       }
     }
 
-  return (
+    const findBookByTitle = (name : String)=>{
+      if(name === ""){
+          setFilterData(data);
+      }else {
+          getBookByName(name).then((res)=>{
+              console.log(res)
+              var books : IBook[] = []
+              books.push(res.data.getBookByName);
+              setFilterData(books);
+          })
+      }
+    }
+
+    return (
     <div className="allView">
       <Search
         placeholder="input search text"
@@ -79,6 +94,14 @@ export const BooksView = () => {
             placeholder={"search books by tag"}
             onSearch={(value)=>{
                 searchBooks(value);
+            }}
+            enterButton
+        >
+        </Search>
+        <Search
+            placeholder={"search books by title"}
+            onSearch={(value)=>{
+                findBookByTitle(value);
             }}
             enterButton
         >

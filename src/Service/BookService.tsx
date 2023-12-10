@@ -1,4 +1,4 @@
-import { apiUrl } from "../constant/constant";
+import {apiUrl, graphqlUrl} from "../constant/constant";
 import { IBook } from "../interface";
 
 export async function getBookByBookId(id: Number) {
@@ -120,4 +120,47 @@ export async function searchBookByTag(Tag: String) {
   })
       .then((res) => res.json())
       .catch((err) => console.log(err));
+}
+
+export async function getBookByName(name:String) {
+  const query =`
+  query($name: String!) {
+    getBookByName(name: $name) {
+        name
+        isbn
+        author
+        price
+        description
+        inventory
+        sales
+        tag
+        image
+        isDelete
+        id
+    }
+  }
+`;
+  const variables = {
+    name: name
+  }
+  const graphqlRequest = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables
+    }),
+  };
+  return await fetch(graphqlUrl, graphqlRequest)
+      .then(response => response.json())
+      .then(data => {
+        // 处理GraphQL响应
+        // console.log(data);
+        return data;
+      })
+      .catch(error => {
+        console.error('Error during GraphQL request:', error);
+      });
 }
