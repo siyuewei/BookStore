@@ -164,3 +164,11 @@ export async function getBookByName(name:String) {
         console.error('Error during GraphQL request:', error);
       });
 }
+
+export async function getHotWords() {
+  return await fetch(apiUrl + "/book/wordCount", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+}

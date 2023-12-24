@@ -21,6 +21,7 @@ export async function checkUser(userAuth: IUserAuth) {
       return res.json();
     })
     .then((res) => {
+      // console.log(res);
       if (res.status === 0) {
         // console.log(res.data.role.toString() === "ADMIN")
         if (res.data.role.toString() === "ADMIN") {

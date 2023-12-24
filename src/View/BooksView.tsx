@@ -6,6 +6,7 @@ import "../css/Book.css";
 import {getBookByName, getBooks, searchBookByTag} from "../Service/BookService";
 import { IBook, IRole } from "../interface";
 import {getAuthorByBookName} from "../Service/MicroService";
+import HotWord from "../components/book/HotWord";
 
 const { Search } = Input;
 
@@ -106,6 +107,7 @@ export const BooksView = () => {
             enterButton
         >
         </Search>
+        <HotWord/>
         {author === "" ?<></>:<div>{author}</div>}
       <BookCarousel />
       <BookList
